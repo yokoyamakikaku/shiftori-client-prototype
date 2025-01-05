@@ -7,6 +7,7 @@ title: シフトに関するエンティティ
 erDiagram
     Shift {
         string id
+        date requestDeadline
     }
 
     ShiftRequirement {
@@ -48,3 +49,27 @@ erDiagram
     ShiftRequest }o--|| Staff : "所有"
     Staff ||--|{ Role : "所属"
 ```
+
+## Shift
+
+シフトを表すエンティティ。
+
+## ShiftRequirement
+
+シフトの必要人数を表すエンティティ。
+
+## ShiftRequest
+
+シフトの希望を表すエンティティ。
+
+## ShiftAssignment
+
+シフトの割り当てを表すエンティティ。
+
+## Staff
+
+スタッフを表すエンティティ。
+
+## Role
+
+役割を表すエンティティ。
