@@ -34,6 +34,9 @@ function About () {
   )
 }
 
+console.log("import.meta.env")
+console.log(import.meta.env)
+
 function App() {
   return (
     <>
