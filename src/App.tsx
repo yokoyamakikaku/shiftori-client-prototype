@@ -5,8 +5,6 @@ import {
   Link
 } from 'react-router-dom'
 
-const basename = import.meta.env.VITE_BASE_URL
-
 function Navigation () {
   return (
     <div>
@@ -40,7 +38,7 @@ console.log(import.meta.env)
 function App() {
   return (
     <>
-      <BrowserRouter basename={basename}>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
