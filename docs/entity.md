@@ -1,4 +1,4 @@
-# エンティティ
+# 全体のエンティティ
 
 ```mermaid
 ---
@@ -20,6 +20,11 @@ erDiagram
         string id
         string staffId
         string shiftId
+    }
+
+    ShiftRequestPeriod {
+        string id
+        string shiftRequestId
         Period period
     }
 
@@ -44,6 +49,7 @@ erDiagram
     Shift ||--|{ ShiftRequirement : "所有"
     Shift ||--o{ ShiftRequest : "所有"
     Shift ||--o{ ShiftAssignment : "所有"
+    ShiftRequest ||--o{ ShiftRequestPeriod : "所有"
 
     ShiftAssignment }o--|| Staff : "所有"
     ShiftRequest }o--|| Staff : "所有"
@@ -73,3 +79,48 @@ erDiagram
 ## Role
 
 役割を表すエンティティ。
+
+
+# シフト希望に関するエンティティ
+
+シフト希望を作成するときのエンティティ。
+
+```mermaid
+---
+title: シフト希望に関するエンティティ
+---
+
+erDiagram
+    ShiftRequestPreview }o--|| ShiftRequestDraft : ""
+    ShiftRequestDraftRequirement }o--|| ShiftRequestDraft : ""
+
+    ShiftRequestDraft ||--o{ ShiftRequestDraftRule : ""
+    ShiftRequestDraftRule ||--o{ ShiftRequestRuleException : ""
+    ShiftRequestDraft ||--o{ ShiftRequestPeriodDraft : ""
+
+
+```
+
+## ShiftRequestDraft
+
+シフト希望の下書きを表すエンティティ。
+
+## ShiftRequestDraftRequirement
+
+既存のシフト要件を読み込んだ場合はそこから生成される。
+あるいは期間を指定した場合は自動で作成される。
+
+## ShiftRequestDraftRule
+
+シフト希望の下書きのルールを表すエンティティ。
+特定の曜日の繰り返しなどを表現する。
+
+## ShiftRequestRuleException
+
+シフト希望のルールの例外を表すエンティティ。
+シフト希望の下書きのルールの例外としてルールを打ち消す。
+
+## ShiftRequestPeriodDraft
+
+シフト希望の下書きの期間を表すエンティティ。
+ルールを使わない場合など直接記述する。
